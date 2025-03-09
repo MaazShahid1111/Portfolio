@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maaz Shahid - Cybersecurity Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #0f0f0f, #1a1a3d);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        header {
+            padding: 40px;
+            animation: fadeIn 1.5s ease-in;
+        }
+        .glow {
+            font-size: 3em;
+            font-weight: bold;
+            color: #00ffcc;
+            text-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc;
+        }
+        section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+            transition: transform 0.3s ease-in-out;
+        }
+        section:hover {
+            transform: scale(1.03);
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 10px;
+            color: white;
+            background: #ff0077;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+            font-size: 1.1em;
+        }
+        .btn:hover {
+            background: #ff3399;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="glow">Maaz Shahid</h1>
+        <p>Cybersecurity Professional | Penetration Tester | C, C++, Python Developer</p>
+    </header>
+    
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I love cybersecurity and specialize in ethical hacking, bug bounties, and full-stack development. Skilled in C, C++, Python, and more.</p>
+    </section>
+    
+    <section id="skills">
+        <h2>Skills</h2>
+        <ul>
+            <li>Cybersecurity & Penetration Testing</li>
+            <li>C, C++, Python, HTML, CSS, JavaScript</li>
+            <li>Bug Bounty Hunting</li>
+            <li>Full-Stack Development</li>
+        </ul>
+    </section>
+    
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project">
+            <h3>Hangman Game</h3>
+            <p>A C-based word guessing game with hints, validation, and scoring.</p>
+            <a href="https://github.com/MaazShahid1111/Game-project.git" class="btn" target="_blank">View on GitHub</a>
+        </div>
+    </section>
+    
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <ul>
+            <li>Certified Ethical Hacker (CEH) - [Placeholder]</li>
+            <li>Google Cybersecurity Certification - [Placeholder]</li>
+        </ul>
+    </section>
+    
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Email: <a href="mailto:sirmaazshahid1111@gmail.com" class="btn">Send Email</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/maaz-shahid-556193347/" class="btn" target="_blank">View Profile</a></p>
+        <p>GitHub: <a href="https://github.com/MaazShahid1111" class="btn" target="_blank">View GitHub</a></p>
+    </section>
+    
+    <section id="resume">
+        <h2>Resume</h2>
+        <a href="resume.pdf" download class="btn">Download Resume</a>
+    </section>
+</body>
+</html>

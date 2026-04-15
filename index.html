@@ -3,24 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maaz Shahid - Cybersecurity Portfolio</title>
+    <title>Maaz Shahid — Cybersecurity Researcher & Bug Bounty Hunter</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-inner">
+            <div class="loader-line-wrap"><div class="loader-line"></div></div>
+            <div class="loader-line-wrap"><div class="loader-line"></div></div>
+            <div class="loader-line-wrap"><div class="loader-line"></div></div>
+            <span class="loader-text">INITIALIZING...</span>
+        </div>
+    </div>
+
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <span class="logo-text">MS</span>
+                <span class="logo-text">MS<span class="logo-dot">//</span></span>
             </div>
             <div class="nav-menu" id="nav-menu">
                 <a href="#about" class="nav-link">About</a>
                 <a href="#experience" class="nav-link">Experience</a>
-                <a href="#certificates" class="nav-link">Certificates</a>
+                <a href="#certificates" class="nav-link">Certs</a>
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#contact" class="nav-link">Contact</a>
+                <a href="#contact" class="nav-cta">Hire Me</a>
             </div>
             <div class="nav-toggle" id="nav-toggle">
                 <span class="bar"></span>
@@ -31,36 +44,132 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="hero">
+        <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
         <div class="hero-container">
             <div class="hero-content">
-                <h1 class="hero-title">Maaz Shahid</h1>
-                <p class="hero-subtitle">Cybersecurity Specialist & SOC Analyst</p>
-                <p class="hero-description">Passionate about securing digital infrastructures and hunting threats in the cyber landscape</p>
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    <span>Available for Opportunities</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-line">Maaz</span>
+                    <span class="title-line accent">Shahid</span>
+                </h1>
+                <div class="hero-cert-badges">
+                    <span class="hero-cert-pill" title="Certified Cybersecurity Entry-Level Professional"><i class="fas fa-award"></i> CCEP</span>
+                    <span class="hero-cert-pill" title="Certified AI Security Researcher"><i class="fas fa-brain"></i> CAISR</span>
+                    <span class="hero-cert-pill" title="Certified Threat Intelligence & Global Analyst"><i class="fas fa-globe"></i> CTIGA</span>
+                </div>
+                <div class="hero-roles">
+                    <span class="role-tag">Bug Bounty Hunter</span>
+                    <span class="role-sep">·</span>
+                    <span class="role-tag">Security Researcher</span>
+                    <span class="role-sep">·</span>
+                    <span class="role-tag">SOC Analyst</span>
+                </div>
+                <p class="hero-description">
+                    CS student at <strong>NEDUET</strong> specializing in Cybersecurity. 
+                    Builder of AI-powered offensive security tools. 
+                    173 flags cleared on OWASP Juice Shop. Certified. Relentless.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-num">18K+</span>
+                        <span class="stat-label">Lines of Security Code</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">173</span>
+                        <span class="stat-label">Juice Shop Flags</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">3</span>
+                        <span class="stat-label">Industry Certifications</span>
+                    </div>
+                </div>
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                    <a href="#projects" class="btn btn-secondary">View Projects</a>
+                    <a href="#contact" class="btn btn-primary"><i class="fas fa-terminal"></i> Let's Connect</a>
+                    <a href="#projects" class="btn btn-secondary"><i class="fas fa-code-branch"></i> View Work</a>
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="cyber-grid">
-                    <div class="grid-line"></div>
-                    <div class="grid-line"></div>
-                    <div class="grid-line"></div>
-                    <div class="grid-line"></div>
+                <div class="profile-frame">
+                    <div class="profile-glow"></div>
+                    <img src="certificates/me.png" alt="Maaz Shahid" class="profile-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="profile-fallback" style="display:none;">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="profile-ring ring-1"></div>
+                    <div class="profile-ring ring-2"></div>
+                    <div class="profile-ring ring-3"></div>
+                </div>
+                <!-- Certification badge images under profile -->
+                <div class="profile-cert-badges">
+                    <div class="profile-cert-badge" title="Certified Cybersecurity Entry-Level Professional">
+                        <img src="certificates/CCEP.png" alt="CCEP Badge" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="cert-badge-icon-fallback" style="display:none;"><i class="fas fa-award"></i></div>
+                        <span>CCEP</span>
+                    </div>
+                    <div class="profile-cert-badge" title="Certified AI Security Researcher">
+                        <img src="certificates/CAISR.png" alt="CAISR Badge" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="cert-badge-icon-fallback" style="display:none;"><i class="fas fa-brain"></i></div>
+                        <span>CAISR</span>
+                    </div>
+                    <div class="profile-cert-badge" title="Certified Threat Intelligence & Global Analyst">
+                        <img src="certificates/CTIGA.png" alt="CTIGA Badge" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="cert-badge-icon-fallback" style="display:none;"><i class="fas fa-globe"></i></div>
+                        <span>CTIGA</span>
+                    </div>
+                </div>
+                <div class="floating-badges">
+                    <div class="f-badge b1"><i class="fas fa-bug"></i> Bug Hunter</div>
+                    <div class="f-badge b2"><i class="fas fa-brain"></i> AI Tools</div>
+                    <div class="f-badge b3"><i class="fas fa-shield-alt"></i> Pentester</div>
                 </div>
             </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-line"></div>
+            <span>scroll</span>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <p>I'm a dedicated cybersecurity professional with extensive experience in SOC operations, incident response, and threat analysis. My passion lies in protecting digital assets and staying ahead of emerging cyber threats.</p>
-                <p>With expertise spanning from penetration testing to SIEM analysis, I bring a comprehensive approach to cybersecurity. My hands-on experience includes vulnerability assessments, network security scanning, and developing custom security tools.</p>
-                <p>I'm committed to continuous learning in this ever-evolving field, constantly updating my skills with the latest security frameworks and threat intelligence methodologies.</p>
+            <div class="section-header">
+                <span class="section-tag">01 / WHO I AM</span>
+                <h2 class="section-title">About Me</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>I'm <strong>Maaz Shahid</strong> — a 2nd semester Computer Science student at <strong>NEDUET</strong> with a specialization in Cybersecurity. While most students are still learning to print "Hello World," I've been building <strong>18,000+ line AI-powered offensive security tools</strong> that think, adapt, and hunt vulnerabilities autonomously.</p>
+                    <p>My approach to security is hands-on and aggressive. I don't just study attacks — I <strong>build the tools, clear the flags, and find the bugs</strong>. From automating lead generation pipelines to creating WAF-bypassing bug bounty scanners with real-time AI payload mutation, I've demonstrated that I operate well beyond my academic year.</p>
+                    <p>I'm actively seeking <strong>internships, part-time roles, or freelance security work</strong>. If you need someone who writes code as fast as they find vulnerabilities — let's talk.</p>
+                    <div class="about-highlights">
+                        <div class="highlight-item"><i class="fas fa-graduation-cap"></i> NEDUET — CS (Cybersecurity) · 2nd Semester</div>
+                        <div class="highlight-item"><i class="fas fa-map-marker-alt"></i> Karachi, Pakistan</div>
+                        <div class="highlight-item"><i class="fas fa-trophy"></i> OWASP Juice Shop — 173/173 Flags Cleared</div>
+                        <div class="highlight-item"><i class="fas fa-robot"></i> AI-Integrated Security Tool Builder</div>
+                    </div>
+                </div>
+                <div class="about-terminal">
+                    <div class="terminal-header">
+                        <span class="t-dot red"></span>
+                        <span class="t-dot yellow"></span>
+                        <span class="t-dot green"></span>
+                        <span class="t-title">maaz@neduet:~$</span>
+                    </div>
+                    <div class="terminal-body" id="terminalBody">
+                        <div class="t-line"><span class="t-cmd">$ whoami</span></div>
+                        <div class="t-line"><span class="t-out">maaz_shahid -- security_researcher</span></div>
+                        <div class="t-line"><span class="t-cmd">$ cat skills.txt</span></div>
+                        <div class="t-line"><span class="t-out">Bug Hunting, Pentest, CTF, AI Tools</span></div>
+                        <div class="t-line"><span class="t-cmd">$ cat status.txt</span></div>
+                        <div class="t-line"><span class="t-out green">AVAILABLE_FOR_HIRE=true</span></div>
+                        <div class="t-line"><span class="t-cmd">$ ./start_hunting.sh<span class="cursor">_</span></span></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -68,7 +177,10 @@
     <!-- Experience Section -->
     <section id="experience" class="section section-dark">
         <div class="container">
-            <h2 class="section-title">Experience</h2>
+            <div class="section-header">
+                <span class="section-tag">02 / WORK HISTORY</span>
+                <h2 class="section-title">Experience</h2>
+            </div>
             <div class="experience-timeline">
                 <div class="timeline-item">
                     <div class="timeline-icon">
@@ -77,8 +189,8 @@
                     <div class="timeline-content">
                         <h3>Cybersecurity Intern</h3>
                         <h4>Certura</h4>
-                        <span class="timeline-date">1 Month Duration</span>
-                        <p>Worked as cybersecurity intern focusing on incident response, SOC operations, and vulnerability scanning. Gained hands-on experience in threat detection, analysis, and mitigation strategies.</p>
+                        <span class="timeline-date"><i class="fas fa-calendar"></i> 1 Month · Internship</span>
+                        <p>Hands-on SOC operations — incident response, threat detection, vulnerability scanning, and log analysis. Gained real-world exposure to enterprise security workflows and SIEM tooling under live conditions.</p>
                         <a href="certificates/cyber_security.pdf" target="_blank" class="experience-link">
                             <i class="fas fa-file-pdf"></i> View Offer Letter
                         </a>
@@ -91,96 +203,124 @@
     <!-- Certificates Section -->
     <section id="certificates" class="section">
         <div class="container">
-            <h2 class="section-title">Certificates</h2>
+            <div class="section-header">
+                <span class="section-tag">03 / CREDENTIALS</span>
+                <h2 class="section-title">Certifications</h2>
+            </div>
+
+            <!-- Featured Certs with Badges -->
+            <div class="certs-featured-label"><i class="fas fa-star"></i> Industry Certifications</div>
+            <div class="certs-featured">
+
+                <div class="cert-featured-card" onclick="openCert('certificates/CCEP-cert.png', 'Certified Cybersecurity Entry-Level Professional (CCEP)')">
+                    <div class="cert-badge-wrap">
+                        <img src="certificates/CCEP.png" alt="CCEP Badge" class="cert-badge-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="cert-badge-fallback" style="display:none;"><i class="fas fa-award"></i></div>
+                    </div>
+                    <div class="cert-featured-content">
+                        <div class="cert-featured-abbr">CCEP</div>
+                        <h3>Certified Cybersecurity Entry-Level Professional</h3>
+                        <p class="cert-featured-desc">Entry-level industry certification covering core cybersecurity domains, threat analysis, and defensive operations.</p>
+                        <span class="cert-view-btn"><i class="fas fa-expand-alt"></i> View Certificate</span>
+                    </div>
+                </div>
+
+                <div class="cert-featured-card" onclick="openCert('certificates/CAISR-cert.png', 'Certified AI Security Researcher (CAISR)')">
+                    <div class="cert-badge-wrap">
+                        <img src="certificates/CAISR.png" alt="CAISR Badge" class="cert-badge-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="cert-badge-fallback" style="display:none;"><i class="fas fa-brain"></i></div>
+                    </div>
+                    <div class="cert-featured-content">
+                        <div class="cert-featured-abbr">CAISR</div>
+                        <h3>Certified AI Security Researcher</h3>
+                        <p class="cert-featured-desc">Advanced certification in AI-assisted security research, automated vulnerability discovery, and intelligent threat modeling.</p>
+                        <span class="cert-view-btn"><i class="fas fa-expand-alt"></i> View Certificate</span>
+                    </div>
+                </div>
+
+                <div class="cert-featured-card" onclick="openCert('certificates/CTIGA-cert.png', 'Certified Threat Intelligence & Global Analyst (CTIGA)')">
+                    <div class="cert-badge-wrap">
+                        <img src="certificates/CTIGA.png" alt="CTIGA Badge" class="cert-badge-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="cert-badge-fallback" style="display:none;"><i class="fas fa-globe"></i></div>
+                    </div>
+                    <div class="cert-featured-content">
+                        <div class="cert-featured-abbr">CTIGA</div>
+                        <h3>Certified Threat Intelligence &amp; Global Analyst</h3>
+                        <p class="cert-featured-desc">Global threat intelligence analysis, APT tracking, OSINT, and strategic threat reporting at an advanced level.</p>
+                        <span class="cert-view-btn"><i class="fas fa-expand-alt"></i> View Certificate</span>
+                    </div>
+                </div>
+                <div class="cert-featured-card" onclick="openCert('certificates/ibm_penetration_testing.jpg', 'Penetration Testing & Cryptography')">
+                    <div class="cert-badge-wrap">
+                        <img src="certificates/ibm_badge_penetration.png" alt="IBM Badge" class="cert-badge-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="cert-badge-fallback" style="display:none;"><i class="fas fa-globe"></i></div>
+                    </div>
+                    <div class="cert-featured-content">
+                        <div class="cert-featured-abbr">IBM</div>
+                        <h3>Penetration testing and &amp; Cryptography</h3>
+                        <p class="cert-featured-desc">Penetration Testing, Threat Hunting & Cryptography
+Practical mastery of offensive pentest methodologies, proactive threat hunting via IBM X-Force, and fundamental cryptographic data protection.</p>
+                        <span class="cert-view-btn"><i class="fas fa-expand-alt"></i> View Certificate</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Certs Grid -->
+            <div class="certs-featured-label" style="margin-top:3rem;"><i class="fas fa-certificate"></i> Additional Certifications</div>
             <div class="certificates-grid">
                 <div class="cert-card" data-cert="certificates/cursa_mongodb.jpg">
-                    <div class="cert-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
+                    <div class="cert-icon"><i class="fas fa-database"></i></div>
                     <h3>MongoDB Basics</h3>
                     <p class="cert-provider">Cursa</p>
-                    <p class="cert-description">Fundamentals of MongoDB, NoSQL database design, queries.</p>
+                    <p class="cert-description">NoSQL database design, queries, and fundamentals.</p>
                 </div>
-
                 <div class="cert-card" data-cert="certificates/cursa_cpp.jpg">
-                    <div class="cert-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
+                    <div class="cert-icon"><i class="fas fa-code"></i></div>
                     <h3>C++ Programming</h3>
                     <p class="cert-provider">Cursa</p>
-                    <p class="cert-description">Introduction to C++ basics, OOP concepts, problem solving.</p>
+                    <p class="cert-description">C++ basics, OOP concepts, and problem solving.</p>
                 </div>
-
                 <div class="cert-card" data-cert="certificates/mindluster_incident_response.jpg">
-                    <div class="cert-icon">
-                        <i class="fas fa-exclamation-triangle"></i>
-                    </div>
+                    <div class="cert-icon"><i class="fas fa-exclamation-triangle"></i></div>
                     <h3>Hands-On Incident Response</h3>
                     <p class="cert-provider">Mindluster</p>
-                    <p class="cert-description">Practical incident handling strategies including detection, response, recovery.</p>
+                    <p class="cert-description">Detection, response, and recovery strategies.</p>
                 </div>
-
                 <div class="cert-card" data-cert="certificates/wireshark_network_analysis.jpg">
-                    <div class="cert-icon">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
-                    <h3>Network Analysis with Wireshark 3</h3>
+                    <div class="cert-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>Network Analysis — Wireshark 3</h3>
                     <p class="cert-provider">Professional Training</p>
-                    <p class="cert-description">Packet analysis, traffic monitoring, troubleshooting with Wireshark 3.</p>
+                    <p class="cert-description">Packet analysis and traffic monitoring.</p>
                 </div>
-
                 <div class="cert-card" data-cert="certificates/simplilearn_intro_cybersecurity.jpg">
-                    <div class="cert-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
+                    <div class="cert-icon"><i class="fas fa-lock"></i></div>
                     <h3>Introduction to Cybersecurity</h3>
                     <p class="cert-provider">Simplilearn</p>
-                    <p class="cert-description">Overview of cybersecurity fundamentals, attack vectors, defense strategies.</p>
+                    <p class="cert-description">Core security fundamentals and attack vectors.</p>
                 </div>
-
                 <div class="cert-card" data-cert="certificates/mindluster_associate_analyst.jpg">
-                    <div class="cert-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
+                    <div class="cert-icon"><i class="fas fa-search"></i></div>
                     <h3>Associate Analyst Fundamentals</h3>
                     <p class="cert-provider">Mindluster</p>
-                    <p class="cert-description">Core analyst skills for SOC roles – log analysis, threat intelligence, triage.</p>
+                    <p class="cert-description">Log analysis, threat intelligence, and triage.</p>
                 </div>
-
                 <div class="cert-card" data-cert="certificates/datafarm_cybersecurity_simulation.jpg">
-                    <div class="cert-icon">
-                        <i class="fas fa-desktop"></i>
-                    </div>
+                    <div class="cert-icon"><i class="fas fa-desktop"></i></div>
                     <h3>Cybersecurity Virtual Job Simulation</h3>
                     <p class="cert-provider">DataFarm</p>
-                    <p class="cert-description">Hands-on virtual internship simulating real SOC analyst tasks.</p>
+                    <p class="cert-description">Simulated real SOC analyst tasks.</p>
                 </div>
-
                 <div class="cert-card" data-cert="certificates/ibm_penetration_testing.jpg">
-                    <div class="cert-icon">
-                        <i class="fab fa-ibm"></i>
-                    </div>
-                    <h3>Penetration Testing, Threat Hunting & Cryptography</h3>
+                    <div class="cert-icon"><i class="fab fa-ibm"></i></div>
+                    <h3>Penetration Testing &amp; Cryptography</h3>
                     <p class="cert-provider">IBM / Coursera</p>
-                    <p class="cert-description">IBM / Coursera specialization – penetration testing, cryptographic methods, hunting.</p>
+                    <p class="cert-description">Pentest methods, threat hunting, and cryptography.</p>
                 </div>
-
                 <div class="cert-card" data-cert="certificates/coursera_splunk_cm.jpg">
-                    <div class="cert-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Splunk CM Introduction</h3>
-                    <p class="cert-provider">Coursera</p>
-                    <p class="cert-description">Introduction to Splunk for log management, searching, basic SIEM use.</p>
-                </div>
-
-                <div class="cert-card" data-cert="certificates/ibm_badge_penetration.png">
-                    <div class="cert-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h3>IBM Badge – Penetration Testing</h3>
-                    <p class="cert-provider">IBM</p>
-                    <p class="cert-description">IBM badge validating specialized SOC analyst skills.</p>
+                    <div class="cert-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Splunk Core Certified Mentor</h3>
+                    <p class="cert-provider">Coursera / Splunk</p>
+                    <p class="cert-description">Advanced SIEM configuration and SPL querying.</p>
                 </div>
             </div>
         </div>
@@ -189,18 +329,109 @@
     <!-- Projects Section -->
     <section id="projects" class="section section-dark">
         <div class="container">
-            <h2 class="section-title">Projects</h2>
+            <div class="section-header">
+                <span class="section-tag">04 / WHAT I BUILT</span>
+                <h2 class="section-title">Projects</h2>
+            </div>
             <div class="projects-grid">
-                <div class="project-card">
+
+                <!-- NEW: Bug Bounty Hunter Tool -->
+                <div class="project-card featured-project">
+                    <div class="project-badge"><i class="fas fa-fire"></i> Flagship</div>
                     <div class="project-video">
-                        <video controls preload="metadata">
-                            <source src="videos/hangman_cpp_gui.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
+                        <video autoplay muted loop playsinline preload="none">
+                            <source src="videos/bug_hunter.mp4" type="video/mp4">
                         </video>
+                        <div class="project-video-overlay">
+                            <div class="project-video-label"><i class="fas fa-play-circle"></i> Live Demo</div>
+                        </div>
                     </div>
                     <div class="project-content">
-                        <h3>Hangman Game (C++ with GUI)</h3>
-                        <p>Classic Hangman game built in C++ with a simple GUI. Demonstrates OOP and interactive gameplay.</p>
+                        <h3><i class="fas fa-bug"></i> Ultimate Bug Bounty Hunter v2.0</h3>
+                        <p>18,000+ line AI-powered autonomous bug bounty scanner. Uses Mistral + Claude Haiku for real-time WAF-aware payload generation and mutation. Rotates IPs via Tor on blocks, covers 90+ attack methods across OWASP Top 10 and beyond — SQLi, XSS, SSRF, IDOR, Auth Bypass, Request Smuggling, and more.</p>
+                        <div class="project-highlights">
+                            <span><i class="fas fa-check-circle"></i> 90+ attack methods</span>
+                            <span><i class="fas fa-check-circle"></i> Real-time AI payload mutation</span>
+                            <span><i class="fas fa-check-circle"></i> WAF bypass + Tor rotation</span>
+                            <span><i class="fas fa-check-circle"></i> Resume-anywhere with SQLite</span>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Mistral AI</span>
+                            <span class="tech-tag">Claude API</span>
+                            <span class="tech-tag">Playwright</span>
+                            <span class="tech-tag">Tor</span>
+                            <span class="tech-tag">OWASP</span>
+                        </div>
+                        <a href="https://github.com/MaazShahid1111/bug-hunter-automated" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                    </div>
+                </div>
+
+                <!-- NEW: Lead Generation Bot -->
+                <div class="project-card featured-project">
+                    <div class="project-badge secondary"><i class="fas fa-robot"></i> New</div>
+                    <div class="project-video">
+                        <video autoplay muted loop playsinline preload="none">
+                            <source src="videos/lead_scraper.mp4" type="video/mp4">
+                        </video>
+                        <div class="project-video-overlay">
+                            <div class="project-video-label"><i class="fas fa-play-circle"></i> Live Demo</div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3><i class="fas fa-crosshairs"></i> Lead Generation Bot — Automated Cold Outreach</h3>
+                        <p>Scrapes Google Maps for local businesses with no website across 6 countries and 30+ niches. Validates emails via free SMTP (no API keys), then sends personalised Gmail and WhatsApp outreach with rate-limit protection and human-like delays. Full pipeline: scrape → validate → email — one command.</p>
+                        <div class="project-highlights">
+                            <span><i class="fas fa-check-circle"></i> 6 countries, 30+ niches</span>
+                            <span><i class="fas fa-check-circle"></i> Free SMTP email validation</span>
+                            <span><i class="fas fa-check-circle"></i> WhatsApp + Gmail outreach</span>
+                            <span><i class="fas fa-check-circle"></i> Full automation pipeline</span>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Selenium</span>
+                            <span class="tech-tag">Google Maps</span>
+                            <span class="tech-tag">SMTP</span>
+                            <span class="tech-tag">WhatsApp Web</span>
+                        </div>
+                        <a href="https://github.com/MaazShahid1111/lead-generation-bot" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                    </div>
+                </div>
+
+                <!-- C-SNE-SOC Lab -->
+                <div class="project-card">
+                    <div class="project-video">
+                        <video autoplay muted loop playsinline preload="none">
+                            <source src="videos/csne_soclab.mp4" type="video/mp4">
+                        </video>
+                        <div class="project-video-overlay">
+                            <div class="project-video-label"><i class="fas fa-play-circle"></i> Live Demo</div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3><i class="fas fa-satellite-dish"></i> C-SNE-SOC Lab</h3>
+                        <p>Advanced SOC analyst toolkit to automate repetitive SOC tasks — log review, IP reputation checks, and alert enrichment for faster triage and response.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">SOC Automation</span>
+                            <span class="tech-tag">Threat Intelligence</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hangman Game -->
+                <div class="project-card">
+                    <div class="project-video">
+                        <video autoplay muted loop playsinline preload="none">
+                            <source src="videos/hangman_cpp_gui.mp4" type="video/mp4">
+                        </video>
+                        <div class="project-video-overlay">
+                            <div class="project-video-label"><i class="fas fa-play-circle"></i> Live Demo</div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3><i class="fas fa-gamepad"></i> Hangman Game (C++ with GUI)</h3>
+                        <p>Classic Hangman game built in C++ with a simple GUI. Demonstrates OOP design patterns and interactive gameplay mechanics from the ground up.</p>
                         <div class="project-tech">
                             <span class="tech-tag">C++</span>
                             <span class="tech-tag">GUI</span>
@@ -209,16 +440,19 @@
                     </div>
                 </div>
 
+                <!-- Knowledge Nexus -->
                 <div class="project-card">
                     <div class="project-video">
-                        <video controls preload="metadata">
-                            <source src="videos/knowledge_nexus_terminal.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
+                        <video autoplay muted loop playsinline preload="none">
+                            <source src="videos/library_enchant_gui.mp4" type="video/mp4">
                         </video>
+                        <div class="project-video-overlay">
+                            <div class="project-video-label"><i class="fas fa-play-circle"></i> Live Demo</div>
+                        </div>
                     </div>
                     <div class="project-content">
-                        <h3>Knowledge Nexus (Library Management System)</h3>
-                        <p>A full library management system built in C++ with terminal interface. Handles book lending, returns, admin features.</p>
+                        <h3><i class="fas fa-book"></i> Knowledge Nexus — Library Management System</h3>
+                        <p>Full library management system built in C++ with a terminal interface. Handles book lending, returns, and admin features with a persistent database backend.</p>
                         <div class="project-tech">
                             <span class="tech-tag">C++</span>
                             <span class="tech-tag">Terminal</span>
@@ -227,16 +461,19 @@
                     </div>
                 </div>
 
+                <!-- Library Enchant GUI -->
                 <div class="project-card">
                     <div class="project-video">
-                        <video controls preload="metadata">
+                        <video autoplay muted loop playsinline preload="none">
                             <source src="videos/library_enchant_gui.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
                         </video>
+                        <div class="project-video-overlay">
+                            <div class="project-video-label"><i class="fas fa-play-circle"></i> Live Demo</div>
+                        </div>
                     </div>
                     <div class="project-content">
-                        <h3>Library Enchant (GUI Version)</h3>
-                        <p>Enhanced version of Knowledge Nexus with GUI. Supports admin & student roles.</p>
+                        <h3><i class="fas fa-book-open"></i> Library Enchant — GUI Version</h3>
+                        <p>Enhanced version of Knowledge Nexus with a full GUI. Supports separate admin and student roles with intuitive interfaces for all library operations.</p>
                         <div class="project-tech">
                             <span class="tech-tag">C++</span>
                             <span class="tech-tag">GUI</span>
@@ -245,16 +482,19 @@
                     </div>
                 </div>
 
+                <!-- Wi-Fi Scanner -->
                 <div class="project-card">
                     <div class="project-video">
-                        <video controls preload="metadata">
+                        <video autoplay muted loop playsinline preload="none">
                             <source src="videos/wifi_scanner_python.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
                         </video>
+                        <div class="project-video-overlay">
+                            <div class="project-video-label"><i class="fas fa-play-circle"></i> Live Demo</div>
+                        </div>
                     </div>
                     <div class="project-content">
-                        <h3>Wi-Fi Scanner (Python)</h3>
-                        <p>Python-based tool that scans Wi-Fi networks for vulnerabilities. Useful for auditing & penetration testing.</p>
+                        <h3><i class="fas fa-wifi"></i> Wi-Fi Scanner (Python)</h3>
+                        <p>Python-based tool that scans nearby Wi-Fi networks for vulnerabilities. Useful for wireless auditing and penetration testing in lab and real-world environments.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">Network Security</span>
@@ -263,16 +503,19 @@
                     </div>
                 </div>
 
+                <!-- Network Security Scanner -->
                 <div class="project-card">
                     <div class="project-video">
-                        <video controls preload="metadata">
+                        <video autoplay muted loop playsinline preload="none">
                             <source src="videos/netwrok_security_scanner.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
                         </video>
+                        <div class="project-video-overlay">
+                            <div class="project-video-label"><i class="fas fa-play-circle"></i> Live Demo</div>
+                        </div>
                     </div>
                     <div class="project-content">
-                        <h3>Network Security Scanner</h3>
-                        <p>Python tool for scanning network hosts and identifying vulnerabilities. Focuses on LAN/host scanning.</p>
+                        <h3><i class="fas fa-network-wired"></i> Network Security Scanner</h3>
+                        <p>Python tool for scanning network hosts and identifying vulnerabilities across a LAN. Focuses on host discovery, port enumeration, and vulnerability assessment.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">Vulnerability Assessment</span>
@@ -281,16 +524,19 @@
                     </div>
                 </div>
 
+                <!-- SIEM Detector -->
                 <div class="project-card">
                     <div class="project-video">
-                        <video controls preload="metadata">
+                        <video autoplay muted loop playsinline preload="none">
                             <source src="videos/siem_detector.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
                         </video>
+                        <div class="project-video-overlay">
+                            <div class="project-video-label"><i class="fas fa-play-circle"></i> Live Demo</div>
+                        </div>
                     </div>
                     <div class="project-content">
-                        <h3>SIEM Detector</h3>
-                        <p>Lightweight detection tool for analyzing logs and identifying suspicious SIEM patterns.</p>
+                        <h3><i class="fas fa-chart-line"></i> SIEM Detector</h3>
+                        <p>Lightweight detection tool for analyzing logs and identifying suspicious SIEM patterns. Designed for rapid triage of security events and anomaly detection.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">SIEM</span>
@@ -299,23 +545,6 @@
                     </div>
                 </div>
 
-                <div class="project-card">
-                    <div class="project-video">
-                        <video controls preload="metadata">
-                            <source src="videos/csne_soclab.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="project-content">
-                        <h3>C-SNE-SOC Lab</h3>
-                        <p>Advanced SOC analyst toolkit to automate repetitive SOC tasks (log review, IP reputation checks, alert enrichment).</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">SOC Automation</span>
-                            <span class="tech-tag">Threat Intelligence</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -323,107 +552,136 @@
     <!-- Skills Section -->
     <section id="skills" class="section">
         <div class="container">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">C++</span>
-                        <span class="skill-percentage">95%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="95"></div>
+            <div class="section-header">
+                <span class="section-tag">05 / ARSENAL</span>
+                <h2 class="section-title">Skills</h2>
+            </div>
+
+            <div class="skills-categories">
+
+                <div class="skill-category">
+                    <div class="skill-cat-header"><i class="fas fa-bug"></i> Offensive Security</div>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Bug Hunting (OWASP Top 10)</span>
+                                <span class="skill-percentage">93%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" data-width="93"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Penetration Testing</span>
+                                <span class="skill-percentage">88%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" data-width="88"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">CTF — Forensics</span>
+                                <span class="skill-percentage">92%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" data-width="92"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">CTF — Cryptography</span>
+                                <span class="skill-percentage">91%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" data-width="91"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Reverse Engineering</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Python</span>
-                        <span class="skill-percentage">95%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="95"></div>
-                    </div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">HTML / CSS / JavaScript</span>
-                        <span class="skill-percentage">80%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="80"></div>
-                    </div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Splunk</span>
-                        <span class="skill-percentage">90%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="90"></div>
-                    </div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Wireshark</span>
-                        <span class="skill-percentage">90%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="90"></div>
-                    </div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Incident Response</span>
-                        <span class="skill-percentage">85%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="85"></div>
+                <div class="skill-category">
+                    <div class="skill-cat-header"><i class="fas fa-shield-alt"></i> Defensive Security</div>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">SOC Analysis (L1 & L2)</span>
+                                <span class="skill-percentage">87%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" data-width="87"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Incident Response</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Threat Hunting</span>
+                                <span class="skill-percentage">83%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" data-width="83"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Splunk / SIEM</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Wireshark / Packet Analysis</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">SOC Analysis (L1 & L2)</span>
-                        <span class="skill-percentage">85%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="85"></div>
+                <div class="skill-category">
+                    <div class="skill-cat-header"><i class="fas fa-code"></i> Programming & Tools</div>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" data-width="95"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">C++</span>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" data-width="95"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">HTML / CSS / JavaScript</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">AI/LLM Integration</span>
+                                <span class="skill-percentage">88%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" data-width="88"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">MongoDB</span>
+                                <span class="skill-percentage">70%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" data-width="70"></div></div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Penetration Testing</span>
-                        <span class="skill-percentage">80%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="80"></div>
-                    </div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Threat Hunting</span>
-                        <span class="skill-percentage">80%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="80"></div>
-                    </div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">MongoDB</span>
-                        <span class="skill-percentage">70%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="70"></div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -431,47 +689,76 @@
     <!-- Contact Section -->
     <section id="contact" class="section section-dark">
         <div class="container">
-            <h2 class="section-title">Contact Me</h2>
+            <div class="section-header">
+                <span class="section-tag">06 / LET'S TALK</span>
+                <h2 class="section-title">Contact Me</h2>
+            </div>
+            <div class="contact-intro">
+                <p>I'm a 2nd semester student who builds tools that most professionals won't. If you're looking for a <strong>driven security researcher, intern, or freelancer</strong> — my inbox is always open.</p>
+            </div>
             <div class="contact-content">
                 <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
+                    <a href="/cdn-cgi/l/email-protection#57243e253a36362d243f363f3e336666666617303a363e3b7934383a" class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                         <div>
                             <h3>Email</h3>
-                            <p>sirmaazshahid1111@gmail.com</p>
+                            <p><span class="__cf_email__" data-cfemail="99eaf0ebf4f8f8e3eaf1f8f1f0fda8a8a8a8d9fef4f8f0f5b7faf6f4">[email&#160;protected]</span></p>
                         </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
+                        <i class="fas fa-arrow-right contact-arrow"></i>
+                    </a>
+                    <a href="tel:+923259274606" class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
                         <div>
-                            <h3>Phone</h3>
-                            <p>0325 9274606</p>
+                            <h3>Phone / WhatsApp</h3>
+                            <p>+92 325 9274606</p>
                         </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-linkedin"></i>
+                        <i class="fas fa-arrow-right contact-arrow"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/maaz-shahid-556193347" target="_blank" class="contact-item">
+                        <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
                         <div>
                             <h3>LinkedIn</h3>
-                            <a href="https://www.linkedin.com/in/maaz-shahid-556193347" target="_blank">linkedin.com/in/maaz-shahid-556193347</a>
+                            <p>maaz-shahid-556193347</p>
                         </div>
-                    </div>
-                </div>
-                <div class="contact-social">
-                    <a href="mailto:sirmaazshahid1111@gmail.com" class="social-link">
-                        <i class="fas fa-envelope"></i>
+                        <i class="fas fa-arrow-right contact-arrow"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/maaz-shahid-556193347" target="_blank" class="social-link">
-                        <i class="fab fa-linkedin"></i>
+                    <a href="https://github.com/MaazShahid1111" target="_blank" class="contact-item">
+                        <div class="contact-icon"><i class="fab fa-github"></i></div>
+                        <div>
+                            <h3>GitHub</h3>
+                            <p>MaazShahid1111</p>
+                        </div>
+                        <i class="fas fa-arrow-right contact-arrow"></i>
+                    </a>
+                </div>
+                <div class="contact-cta-box">
+                    <div class="cta-icon"><i class="fas fa-user-shield"></i></div>
+                    <h3>Open to Opportunities</h3>
+                    <p>Internships · Part-time Roles · Bug Bounty Collaboration · Freelance Security Projects</p>
+                    <a href="/cdn-cgi/l/email-protection#e19288938c80809b928980898885d0d0d0d0a1868c80888dcf828e8c" class="btn btn-primary" style="margin-top:1.5rem; display:inline-block;">
+                        <i class="fas fa-paper-plane"></i> Send a Message
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <span class="footer-logo">MS<span class="logo-dot">//</span></span>
+                <p>Built by Maaz Shahid · NEDUET CS '27 · Cybersecurity</p>
+                <p class="footer-sub">© 2025 · All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
     <!-- Certificate Modal -->
     <div id="certModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close" id="closeModal">&times;</</span>
+            <p class="modal-title" id="modalTitle"></p>
             <img id="modalImage" src="" alt="Certificate">
         </div>
     </div>

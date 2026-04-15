@@ -1,15 +1,70 @@
-// Navigation functionality
+/* =============================================
+   MAAZ SHAHID — CYBERSECURITY PORTFOLIO
+   script.js — Full Redesign 2025
+   ============================================= */
+
+/* ─── Loader ─── */
+// Script is at bottom of body so DOM is already ready — plain timeout, no events needed.
+setTimeout(() => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.style.opacity = '0';
+        loader.style.pointerEvents = 'none';
+        setTimeout(() => loader.remove(), 600);
+    }
+    initScrollAnimations();
+    animateOnScroll();
+}, 800);
+
+/* ─── Matrix Canvas ─── */
+const canvas = document.getElementById('matrixCanvas');
+if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let cols, drops;
+
+    const resize = () => {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        cols = Math.floor(canvas.width / 18);
+        drops = Array(cols).fill(1);
+    };
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノ∑Ψ∆ΩΦ';
+
+    const drawMatrix = () => {
+        ctx.fillStyle = 'rgba(5, 10, 14, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#00ff88';
+        ctx.font = '14px Share Tech Mono';
+
+        drops.forEach((y, i) => {
+            const char = chars[Math.floor(Math.random() * chars.length)];
+            ctx.fillText(char, i * 18, y * 18);
+
+            if (y * 18 > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
+        });
+    };
+
+    setInterval(drawMatrix, 55);
+}
+
+/* ─── Navigation ─── */
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
-const navLinks = document.querySelectorAll('.nav-link');
+const navLinks = document.querySelectorAll('.nav-link, .nav-cta');
 
-// Toggle mobile menu
-navToggle.addEventListener('click', () => {
+navToggle?.addEventListener('click', () => {
     navMenu.classList.toggle('active');
     navToggle.classList.toggle('active');
 });
 
-// Close mobile menu when clicking on a link
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
@@ -17,344 +72,216 @@ navLinks.forEach(link => {
     });
 });
 
-// Smooth scrolling for navigation links
-navLinks.forEach(link => {
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        
-        if (targetSection) {
-            const offsetTop = targetSection.offsetTop - 70; // Account for fixed navbar
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
 });
 
-// Navbar background change on scroll
+// Navbar scroll effect
+let lastScroll = 0;
 window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(26, 26, 26, 0.98)';
-    } else {
-        navbar.style.background = 'rgba(26, 26, 26, 0.95)';
+    const navbar = document.getElementById('navbar');
+    const current = window.scrollY;
+    if (navbar) {
+        if (current > 80) {
+            navbar.style.borderBottomColor = 'rgba(0,255,136,0.25)';
+        } else {
+            navbar.style.borderBottomColor = 'rgba(0,255,136,0.15)';
+        }
     }
+    lastScroll = current;
 });
 
-// Skills animation
-const skillsSection = document.getElementById('skills');
-const skillBars = document.querySelectorAll('.skill-progress');
-let skillsAnimated = false;
-
-const animateSkills = () => {
-    if (!skillsAnimated) {
-        skillBars.forEach(bar => {
-            const width = bar.getAttribute('data-width');
-            setTimeout(() => {
-                bar.style.width = width + '%';
-            }, 300);
-        });
-        skillsAnimated = true;
-    }
-};
-
-// Intersection Observer for skills animation
-const skillsObserver = new IntersectionObserver((entries) => {
+// Active nav link highlight
+const sections = document.querySelectorAll('section[id]');
+const navObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            animateSkills();
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+            if (active) active.classList.add('active');
         }
     });
-}, {
-    threshold: 0.5
-});
+}, { threshold: 0.4 });
 
-if (skillsSection) {
-    skillsObserver.observe(skillsSection);
+sections.forEach(s => navObserver.observe(s));
+
+/* ─── Fade-up scroll animations ─── */
+function initScrollAnimations() {
+    const animatables = document.querySelectorAll(
+        '.cert-card, .project-card, .skill-category, .contact-item, .timeline-item, .cert-featured-card, .about-terminal, .hero-stats'
+    );
+
+    animatables.forEach((el, i) => {
+        el.classList.add('fade-up');
+        el.style.transitionDelay = `${(i % 4) * 0.07}s`;
+    });
+
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                fadeObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    animatables.forEach(el => fadeObserver.observe(el));
 }
 
-// Certificate modal functionality
+/* ─── Skill bars animation ─── */
+function animateOnScroll() {
+    const skillsSection = document.getElementById('skills');
+    let skillsDone = false;
+
+    if (!skillsSection) return;
+
+    const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !skillsDone) {
+                skillsDone = true;
+                document.querySelectorAll('.skill-progress').forEach((bar, i) => {
+                    const width = bar.getAttribute('data-width');
+                    setTimeout(() => {
+                        bar.style.width = width + '%';
+                    }, i * 80 + 200);
+                });
+            }
+        });
+    }, { threshold: 0.3 });
+
+    skillObserver.observe(skillsSection);
+}
+
+/* ─── Terminal typing effect ─── */
+const terminalBody = document.getElementById('terminalBody');
+if (terminalBody) {
+    const lines = terminalBody.querySelectorAll('.t-line');
+    lines.forEach((line, i) => {
+        line.style.opacity = '0';
+        line.style.transform = 'translateX(-10px)';
+        line.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        setTimeout(() => {
+            line.style.opacity = '1';
+            line.style.transform = 'translateX(0)';
+        }, 1400 + i * 200);
+    });
+}
+
+/* ─── Certificate Modal ─── */
 const modal = document.getElementById('certModal');
 const modalImg = document.getElementById('modalImage');
-const closeModal = document.querySelector('.close');
-const certCards = document.querySelectorAll('.cert-card');
+const modalTitle = document.getElementById('modalTitle');
+const closeBtn = document.getElementById('closeModal');
 
-// Open certificate modal
-certCards.forEach(card => {
+function openCert(src, title) {
+    if (!modal || !modalImg) return;
+    modalImg.src = src;
+    if (modalTitle) modalTitle.textContent = title || '';
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCert() {
+    if (!modal) return;
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { modalImg.src = ''; }, 300);
+}
+
+// Cert cards (older certs)
+document.querySelectorAll('.cert-card').forEach(card => {
     card.addEventListener('click', () => {
-        const certPath = card.getAttribute('data-cert');
-        modalImg.src = certPath;
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
+        const src = card.getAttribute('data-cert');
+        const title = card.querySelector('h3')?.textContent || '';
+        if (src) openCert(src, title);
     });
 });
 
-// Close modal functionality
-const closeModalFunction = () => {
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-};
-
-closeModal.addEventListener('click', closeModalFunction);
-
-// Close modal when clicking outside the image
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        closeModalFunction();
-    }
-});
-
-// Close modal with Escape key
+closeBtn?.addEventListener('click', closeCert);
+modal?.addEventListener('click', (e) => { if (e.target === modal) closeCert(); });
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.style.display === 'block') {
-        closeModalFunction();
-    }
+    if (e.key === 'Escape') closeCert();
 });
 
-// Intersection Observer for fade-in animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Add fade-in animation to cards and sections
-const animateElements = document.querySelectorAll('.cert-card, .project-card, .skill-item, .contact-item, .timeline-item');
-
-animateElements.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-});
-
-// Video play/pause optimization for performance
-const videos = document.querySelectorAll('video');
-
+/* ─── Video optimization ─── */
 const videoObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         const video = entry.target;
         if (entry.isIntersecting) {
-            // Video is in viewport, allow it to be played
-            video.preload = 'metadata';
+            video.play().catch(() => {});
         } else {
-            // Video is out of viewport, pause if playing
-            if (!video.paused) {
-                video.pause();
-            }
+            video.pause();
         }
     });
-}, {
-    threshold: 0.25
-});
+}, { threshold: 0.25 });
 
-videos.forEach(video => {
+document.querySelectorAll('video').forEach(video => {
     videoObserver.observe(video);
-    
-    // Add loading state
-    video.addEventListener('loadstart', () => {
-        video.style.opacity = '0.7';
-    });
-    
     video.addEventListener('loadeddata', () => {
         video.style.opacity = '1';
+        video.style.transition = 'opacity 0.3s ease';
     });
 });
 
-// Typing animation for hero section
-const heroTitle = document.querySelector('.hero-title');
-const heroSubtitle = document.querySelector('.hero-subtitle');
-
-if (heroTitle && heroSubtitle) {
-    const titleText = heroTitle.textContent;
-    const subtitleText = heroSubtitle.textContent;
-    
-    heroTitle.textContent = '';
-    heroSubtitle.textContent = '';
-    
-    let titleIndex = 0;
-    let subtitleIndex = 0;
-    
-    const typeTitle = () => {
-        if (titleIndex < titleText.length) {
-            heroTitle.textContent += titleText[titleIndex];
-            titleIndex++;
-            setTimeout(typeTitle, 100);
-        } else {
-            setTimeout(typeSubtitle, 300);
-        }
-    };
-    
-    const typeSubtitle = () => {
-        if (subtitleIndex < subtitleText.length) {
-            heroSubtitle.textContent += subtitleText[subtitleIndex];
-            subtitleIndex++;
-            setTimeout(typeSubtitle, 80);
-        }
-    };
-    
-    // Start typing animation after page load
-    window.addEventListener('load', () => {
-        setTimeout(typeTitle, 500);
-    });
-}
-
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroVisual = document.querySelector('.hero-visual');
-    
-    if (heroVisual) {
-        const speed = scrolled * 0.5;
-        heroVisual.style.transform = `translateY(${speed}px)`;
-    }
-});
-
-// Add click ripple effect to buttons
-const buttons = document.querySelectorAll('.btn, .cert-card, .project-card');
-
-buttons.forEach(button => {
-    button.addEventListener('click', function(e) {
-        const ripple = document.createElement('span');
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
-        
-        ripple.style.width = ripple.style.height = size + 'px';
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-        ripple.classList.add('ripple');
-        
-        this.appendChild(ripple);
-        
-        setTimeout(() => {
-            ripple.remove();
-        }, 600);
-    });
-});
-
-// Add CSS for ripple effect
-const style = document.createElement('style');
-style.textContent = `
+/* ─── Ripple effect ─── */
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
     .ripple {
         position: absolute;
         border-radius: 50%;
-        background: rgba(0, 255, 136, 0.3);
+        background: rgba(0,255,136,0.25);
         transform: scale(0);
-        animation: ripple-animation 0.6s linear;
+        animation: ripple-anim 0.6s linear;
         pointer-events: none;
+        z-index: 10;
     }
-    
-    @keyframes ripple-animation {
-        to {
-            transform: scale(4);
-            opacity: 0;
-        }
+    @keyframes ripple-anim {
+        to { transform: scale(4); opacity: 0; }
     }
-    
-    .btn, .cert-card, .project-card {
-        position: relative;
-        overflow: hidden;
+    .nav-link.active {
+        color: var(--primary) !important;
     }
 `;
+document.head.appendChild(rippleStyle);
 
-document.head.appendChild(style);
-
-// Contact form functionality (if needed in future)
-const contactButtons = document.querySelectorAll('.social-link');
-
-contactButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-        // Add click animation
-        button.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            button.style.transform = 'translateY(-5px)';
-        }, 100);
+document.querySelectorAll('.btn, .cert-card, .cert-featured-card').forEach(el => {
+    el.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        ripple.style.cssText = `
+            width:${size}px; height:${size}px;
+            left:${e.clientX - rect.left - size/2}px;
+            top:${e.clientY - rect.top - size/2}px;
+        `;
+        ripple.classList.add('ripple');
+        this.style.position = 'relative';
+        this.style.overflow = 'hidden';
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 700);
     });
 });
 
-// Initialize AOS (Animate On Scroll) alternative
-const initScrollAnimations = () => {
-    const elements = document.querySelectorAll('[data-aos]');
-    
-    elements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(50px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
-    
-    const scrollObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, {
-        threshold: 0.1
-    });
-    
-    elements.forEach(el => {
-        scrollObserver.observe(el);
-    });
-};
-
-// Loading screen
-window.addEventListener('load', () => {
-    const loader = document.querySelector('.loader');
-    if (loader) {
-        loader.style.opacity = '0';
-        setTimeout(() => {
-            loader.style.display = 'none';
-        }, 500);
-    }
-    
-    // Initialize scroll animations
-    initScrollAnimations();
-});
-
-// Performance optimization: Debounce scroll events
-const debounce = (func, wait) => {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-};
-
-// Debounced scroll handler
-const debouncedScrollHandler = debounce(() => {
-    const scrolled = window.pageYOffset;
-    const heroVisual = document.querySelector('.hero-visual');
-    
-    if (heroVisual) {
-        const speed = scrolled * 0.3;
-        heroVisual.style.transform = `translateY(${speed}px)`;
-    }
-}, 10);
-
-window.addEventListener('scroll', debouncedScrollHandler);
-
-// Console welcome message
+/* ─── Console message ─── */
 console.log(`
-🔒 Welcome to Maaz Shahid's Cybersecurity Portfolio! 
-🛡️ Securing the digital world, one line of code at a time.
-📧 Contact: sirmaazshahid1111@gmail.com
-🔗 LinkedIn: linkedin.com/in/maaz-shahid-556193347
-`);
+%c
+███╗   ███╗ █████╗  █████╗ ███████╗
+████╗ ████║██╔══██╗██╔══██╗╚════██║
+██╔████╔██║███████║███████║    ██╔╝
+██║╚██╔╝██║██╔══██║██╔══██║   ██╔╝ 
+██║ ╚═╝ ██║██║  ██║██║  ██║   ██║  
+╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝  
+
+🔒 Maaz Shahid — Cybersecurity Researcher
+🎓 NEDUET CS · Cybersecurity Specialization
+🐛 Bug Bounty Hunter | AI Tool Builder
+📧 sirmaazshahid1111@gmail.com
+🔗 github.com/MaazShahid1111
+`, 'color: #00ff88; font-family: monospace; font-size: 10px;');

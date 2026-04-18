@@ -9,8 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <!-- Loader -->
     <div class="loader" id="loader">
         <div class="loader-inner">
             <div class="loader-line-wrap"><div class="loader-line"></div></div>
@@ -19,8 +17,6 @@
             <span class="loader-text">INITIALIZING...</span>
         </div>
     </div>
-
-    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
@@ -42,8 +38,6 @@
             </div>
         </div>
     </nav>
-
-    <!-- Hero Section -->
     <section class="hero" id="hero">
         <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
         <div class="hero-container">
@@ -103,7 +97,6 @@
                     <div class="profile-ring ring-2"></div>
                     <div class="profile-ring ring-3"></div>
                 </div>
-                <!-- Certification badge images under profile -->
                 <div class="profile-cert-badges">
                     <div class="profile-cert-badge" title="Certified Cybersecurity Educator Professional">
                         <img src="certificates/CCEP.png" alt="CCEP Badge" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
@@ -138,8 +131,6 @@
             <span>scroll</span>
         </div>
     </section>
-
-    <!-- About Section -->
     <section id="about" class="section">
         <div class="container">
             <div class="section-header">
@@ -178,8 +169,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Experience Section -->
     <section id="experience" class="section section-dark">
         <div class="container">
             <div class="section-header">
@@ -202,21 +191,92 @@
                     </div>
                 </div>
             </div>
+            <div class="experience-simulations-header">
+                <i class="fas fa-laptop-code"></i>
+                <span>Virtual Job Simulations (Forage)</span>
+            </div>
+            <div class="experience-timeline">
+                <div class="timeline-item simulation-item">
+                    <div class="timeline-icon">
+                        <img src="certificates/AIG.png" alt="AIG" class="simulation-logo">
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Shields Up: Cybersecurity Job Simulation</h3>
+                        <h4>AIG</h4>
+                        <span class="timeline-date"><i class="fas fa-calendar"></i> Sep 2025 – Apr 2026</span>
+                        <ul class="simulation-tasks">
+                            <li>Responding to a zero-day vulnerability</li>
+                            <li>(Technical) Bypassing ransomware</li>
+                        </ul>
+                        <button class="experience-link view-cert-btn" data-cert="certificates/AIG.png" data-title="AIG Cybersecurity Job Simulation">
+                            <i class="fas fa-certificate"></i> View Certificate
+                        </button>
+                    </div>
+                </div>
+                <div class="timeline-item simulation-item">
+                    <div class="timeline-icon">
+                        <img src="certificates/DATAFARM.png" alt="DATACOM" class="simulation-logo">
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Cybersecurity Job Simulation</h3>
+                        <h4>DATACOM (via DataFarm)</h4>
+                        <span class="timeline-date"><i class="fas fa-calendar"></i> September 2025</span>
+                        <ul class="simulation-tasks">
+                            <li>APT breach: analysing the impact on information security</li>
+                            <li>Cybersecurity risk assessment</li>
+                        </ul>
+                        <button class="experience-link view-cert-btn" data-cert="certificates/DATAFARM.png" data-title="DataFarm Cybersecurity Simulation">
+                            <i class="fas fa-certificate"></i> View Certificate
+                        </button>
+                    </div>
+                </div>
+                <div class="timeline-item simulation-item">
+                    <div class="timeline-icon">
+                        <img src="certificates/MASTERCARD.png" alt="Mastercard" class="simulation-logo">
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Cybersecurity Job Simulation</h3>
+                        <h4>Mastercard</h4>
+                        <span class="timeline-date"><i class="fas fa-calendar"></i> April 2026</span>
+                        <ul class="simulation-tasks">
+                            <li>Design a phishing email simulation</li>
+                            <li>Interpret phishing simulation results</li>
+                        </ul>
+                        <button class="experience-link view-cert-btn" data-cert="certificates/MASTERCARD.png" data-title="Mastercard Cybersecurity Simulation">
+                            <i class="fas fa-certificate"></i> View Certificate
+                        </button>
+                    </div>
+                </div>
+                <div class="timeline-item simulation-item">
+                    <div class="timeline-icon">
+                        <img src="certificates/TATA.png" alt="TATA" class="simulation-logo">
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Cybersecurity Analyst Job Simulation</h3>
+                        <h4>TATA</h4>
+                        <span class="timeline-date"><i class="fas fa-calendar"></i> April 2026</span>
+                        <ul class="simulation-tasks">
+                            <li>Identity and access management (IAM) fundamentals</li>
+                            <li>IAM strategy assessment</li>
+                            <li>Crafting custom IAM solutions</li>
+                            <li>Platform integration</li>
+                        </ul>
+                        <button class="experience-link view-cert-btn" data-cert="certificates/TATA.png" data-title="TATA Cybersecurity Analyst Simulation">
+                            <i class="fas fa-certificate"></i> View Certificate
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-
-    <!-- Certificates Section -->
     <section id="certificates" class="section">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">03 / CREDENTIALS</span>
                 <h2 class="section-title">Certifications</h2>
             </div>
-
-            <!-- Featured Certs with Badges -->
             <div class="certs-featured-label"><i class="fas fa-star"></i> Industry Certifications</div>
             <div class="certs-featured">
-
                 <div class="cert-featured-card" onclick="openCert('certificates/CCEP-cert.png', 'Certified Cybersecurity Educator Professional (CCEP)')">
                     <div class="cert-badge-wrap">
                         <img src="certificates/CCEP.png" alt="CCEP Badge" class="cert-badge-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -229,7 +289,6 @@
                         <span class="cert-view-btn"><i class="fas fa-expand-alt"></i> View Certificate</span>
                     </div>
                 </div>
-
                 <div class="cert-featured-card" onclick="openCert('certificates/CAISR-cert.png', 'Certified AI Security Researcher (CAISR)')">
                     <div class="cert-badge-wrap">
                         <img src="certificates/CAISR.png" alt="CAISR Badge" class="cert-badge-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -242,7 +301,6 @@
                         <span class="cert-view-btn"><i class="fas fa-expand-alt"></i> View Certificate</span>
                     </div>
                 </div>
-
                 <div class="cert-featured-card" onclick="openCert('certificates/CTIGA-cert.png', 'Certified Threat Intelligence & Global Analyst (CTIGA)')">
                     <div class="cert-badge-wrap">
                         <img src="certificates/CTIGA.png" alt="CTIGA Badge" class="cert-badge-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -263,14 +321,11 @@
                     <div class="cert-featured-content">
                         <div class="cert-featured-abbr">IBM</div>
                         <h3>Penetration testing and &amp; Cryptography</h3>
-                        <p class="cert-featured-desc">Penetration Testing, Threat Hunting & Cryptography
-Practical mastery of offensive pentest methodologies, proactive threat hunting via IBM X-Force, and fundamental cryptographic data protection.</p>
+                        <p class="cert-featured-desc">Penetration Testing, Threat Hunting & Cryptography Practical mastery of offensive pentest methodologies, proactive threat hunting via IBM X-Force, and fundamental cryptographic data protection.</p>
                         <span class="cert-view-btn"><i class="fas fa-expand-alt"></i> View Certificate</span>
                     </div>
                 </div>
             </div>
-
-            <!-- Other Certs Grid -->
             <div class="certs-featured-label" style="margin-top:3rem;"><i class="fas fa-certificate"></i> Additional Certifications</div>
             <div class="certificates-grid">
                 <div class="cert-card" data-cert="certificates/cursa_mongodb.jpg">
@@ -309,12 +364,6 @@ Practical mastery of offensive pentest methodologies, proactive threat hunting v
                     <p class="cert-provider">Mindluster</p>
                     <p class="cert-description">Log analysis, threat intelligence, and triage.</p>
                 </div>
-                <div class="cert-card" data-cert="certificates/datafarm_cybersecurity_simulation.jpg">
-                    <div class="cert-icon"><i class="fas fa-desktop"></i></div>
-                    <h3>Cybersecurity Virtual Job Simulation</h3>
-                    <p class="cert-provider">DataFarm</p>
-                    <p class="cert-description">Simulated real SOC analyst tasks.</p>
-                </div>
                 <div class="cert-card" data-cert="certificates/ibm_penetration_testing.jpg">
                     <div class="cert-icon"><i class="fab fa-ibm"></i></div>
                     <h3>Penetration Testing &amp; Cryptography</h3>
@@ -330,8 +379,6 @@ Practical mastery of offensive pentest methodologies, proactive threat hunting v
             </div>
         </div>
     </section>
-
-    <!-- Projects Section -->
     <section id="projects" class="section section-dark">
         <div class="container">
             <div class="section-header">
@@ -339,8 +386,6 @@ Practical mastery of offensive pentest methodologies, proactive threat hunting v
                 <h2 class="section-title">Projects</h2>
             </div>
             <div class="projects-grid">
-
-                <!-- NEW: Bug Bounty Hunter Tool -->
                 <div class="project-card featured-project">
                     <div class="project-badge"><i class="fas fa-fire"></i> Flagship</div>
                     <div class="project-video">
@@ -371,8 +416,6 @@ Practical mastery of offensive pentest methodologies, proactive threat hunting v
                         <a href="https://github.com/MaazShahid1111/bug-hunter-automated" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
                     </div>
                 </div>
-
-                <!-- NEW: Lead Generation Bot -->
                 <div class="project-card featured-project">
                     <div class="project-badge secondary"><i class="fas fa-robot"></i> New</div>
                     <div class="project-video">
@@ -402,8 +445,6 @@ Practical mastery of offensive pentest methodologies, proactive threat hunting v
                         <a href="https://github.com/MaazShahid1111/lead-generation-bot" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
                     </div>
                 </div>
-
-                <!-- C-SNE-SOC Lab -->
                 <div class="project-card">
                     <div class="project-video">
                         <video autoplay muted loop playsinline preload="none">
@@ -423,8 +464,6 @@ Practical mastery of offensive pentest methodologies, proactive threat hunting v
                         </div>
                     </div>
                 </div>
-
-                <!-- Hangman Game -->
                 <div class="project-card">
                     <div class="project-video">
                         <video autoplay muted loop playsinline preload="none">
@@ -444,8 +483,6 @@ Practical mastery of offensive pentest methodologies, proactive threat hunting v
                         </div>
                     </div>
                 </div>
-
-                <!-- Knowledge Nexus -->
                 <div class="project-card">
                     <div class="project-video">
                         <video autoplay muted loop playsinline preload="none">
@@ -465,8 +502,6 @@ Practical mastery of offensive pentest methodologies, proactive threat hunting v
                         </div>
                     </div>
                 </div>
-
-                <!-- Library Enchant GUI -->
                 <div class="project-card">
                     <div class="project-video">
                         <video autoplay muted loop playsinline preload="none">
@@ -486,8 +521,6 @@ Practical mastery of offensive pentest methodologies, proactive threat hunting v
                         </div>
                     </div>
                 </div>
-
-                <!-- Wi-Fi Scanner -->
                 <div class="project-card">
                     <div class="project-video">
                         <video autoplay muted loop playsinline preload="none">
@@ -507,8 +540,6 @@ Practical mastery of offensive pentest methodologies, proactive threat hunting v
                         </div>
                     </div>
                 </div>
-
-                <!-- Network Security Scanner -->
                 <div class="project-card">
                     <div class="project-video">
                         <video autoplay muted loop playsinline preload="none">
@@ -528,8 +559,6 @@ Practical mastery of offensive pentest methodologies, proactive threat hunting v
                         </div>
                     </div>
                 </div>
-
-                <!-- SIEM Detector -->
                 <div class="project-card">
                     <div class="project-video">
                         <video autoplay muted loop playsinline preload="none">
@@ -549,21 +578,16 @@ Practical mastery of offensive pentest methodologies, proactive threat hunting v
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-
-    <!-- Skills Section -->
     <section id="skills" class="section">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">05 / ARSENAL</span>
                 <h2 class="section-title">Skills</h2>
             </div>
-
             <div class="skills-categories">
-
                 <div class="skill-category">
                     <div class="skill-cat-header"><i class="fas fa-bug"></i> Offensive Security</div>
                     <div class="skills-list">
@@ -604,7 +628,6 @@ Practical mastery of offensive pentest methodologies, proactive threat hunting v
                         </div>
                     </div>
                 </div>
-
                 <div class="skill-category">
                     <div class="skill-cat-header"><i class="fas fa-shield-alt"></i> Defensive Security</div>
                     <div class="skills-list">
@@ -645,7 +668,6 @@ Practical mastery of offensive pentest methodologies, proactive threat hunting v
                         </div>
                     </div>
                 </div>
-
                 <div class="skill-category">
                     <div class="skill-cat-header"><i class="fas fa-code"></i> Programming & Tools</div>
                     <div class="skills-list">
@@ -686,12 +708,9 @@ Practical mastery of offensive pentest methodologies, proactive threat hunting v
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-
-    <!-- Contact Section -->
     <section id="contact" class="section section-dark">
         <div class="container">
             <div class="section-header">
@@ -747,8 +766,6 @@ Practical mastery of offensive pentest methodologies, proactive threat hunting v
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -758,8 +775,6 @@ Practical mastery of offensive pentest methodologies, proactive threat hunting v
             </div>
         </div>
     </footer>
-
-    <!-- Certificate Modal -->
     <div id="certModal" class="modal">
         <div class="modal-content">
             <span class="close" id="closeModal">&times;</span>
@@ -767,7 +782,6 @@ Practical mastery of offensive pentest methodologies, proactive threat hunting v
             <img id="modalImage" src="" alt="Certificate">
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
